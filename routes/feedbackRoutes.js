@@ -6,13 +6,14 @@ const Feedback = require("../models/Feedback");
 router.post("/", async (req, res) => {
   try {
     const {
-      overallExperience,
-      featureUsed,
-      translationAccuracy,
-      technicalIssues,
-      futureFeatures,
-      additionalComments
-    } = req.body;
+  overallExperience,
+  featureUsed,
+  translationAccuracy,
+  technicalIssues,
+  futureFeatures,
+  additionalComments
+} = req.body;
+
 
     if (!overallExperience || !featureUsed) {
       return res.status(400).json({ error: "overallExperience and featureUsed are required" });

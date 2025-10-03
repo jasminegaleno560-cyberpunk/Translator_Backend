@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
 const FeedbackSchema = new mongoose.Schema({
-  language: { type: String, required: true }, // ENGLISH, TAGALOG, SAMA_BAJAU
-
   overallExperience: { type: String, required: true },
-  languageUsedMost: { type: String, required: true },
+  featureUsed: { type: String, required: true }, // renamed from languageUsedMost
 
-  translationAccuracySamaToEnglish: { type: Number, min: 1, max: 5 },
-  translationAccuracyEnglishToSama: { type: Number, min: 1, max: 5 },
-  translationAccuracySamaToTagalog: { type: Number, min: 1, max: 5 },
+  translationAccuracy: {
+    samaToEnglish: { type: String },
+    englishToSama: { type: String },
+    samaToTagalog: { type: String }
+  },
 
   technicalIssues: { type: String },
   futureFeatures: { type: String },
@@ -16,5 +16,6 @@ const FeedbackSchema = new mongoose.Schema({
 
   createdAt: { type: Date, default: Date.now }
 });
+
 
 module.exports = mongoose.model("Feedback", FeedbackSchema);
