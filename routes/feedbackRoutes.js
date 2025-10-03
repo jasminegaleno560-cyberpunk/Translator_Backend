@@ -5,16 +5,29 @@ const Feedback = require("../models/Feedback");
 // POST: Submit feedback
 router.post("/", async (req, res) => {
   try {
-    const { username, message, rating } = req.body;
+    const {
+      overallExperience,
+      featureUsed,
+      translationAccuracy,
+      technicalIssues,
+      futureFeatures,
+      additionalComments
+    } = req.body;
 
-    // quick check for required fields
-    if (!username || !message) {
-      return res.status(400).json({ error: "username and message are required" });
+    if (!overallExperience || !featureUsed) {
+      return res.status(400).json({ error: "overallExperience and featureUsed are required" });
     }
 
-    const newFeedback = new Feedback({ username, message, rating });
-    await newFeedback.save();
+    const newFeedback = new Feedback({
+      overallExperience,
+      featureUsed,
+      translationAccuracy,
+      technicalIssues,
+      futureFeatures,
+      additionalComments
+    });
 
+    await newFeedback.save();
     res.json({ success: true, feedback: newFeedback });
   } catch (err) {
     console.error("❌ Error saving feedback:", err);
